@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
 
   
     this.active.queryParamMap.subscribe(data=>{
-    console.log(data.get('code'));
     this.serv.getAcessToken(data.get('code')).subscribe(data=>{
     this.getUserData(data);
     
