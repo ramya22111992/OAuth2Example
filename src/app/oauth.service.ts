@@ -25,12 +25,16 @@ getAcessToken(auth_code:string)
 
 }
 
-getUserDetails(oath_token:string)
+getUserDetails()
 {
-return this.http.get(this.serverUrl+'getUserDetails',{headers:new HttpHeaders({
-  Authorization: "token"+" "+oath_token
-}),withCredentials:true}).pipe(catchError(err=>throwError(err)))
+return this.http.get(this.serverUrl+'getUserDetails',{withCredentials:true}).pipe(catchError(err=>throwError(err)))
 
+}
+
+logout()
+{
+  return this.http.get(this.serverUrl+'logout',{withCredentials:true}).pipe(catchError(err=>throwError(err)))
+ 
 }
 
 }

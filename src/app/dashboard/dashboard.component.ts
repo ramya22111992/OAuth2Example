@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { OAuthService } from '../oauth.service';
 
 @Component({
@@ -9,25 +9,17 @@ import { OAuthService } from '../oauth.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private active:ActivatedRoute,private serv:OAuthService) { }
+  constructor(private active:ActivatedRoute,private serv:OAuthService,private router:Router) { }
+
+  username:string;
 
   ngOnInit() {
-
-  
-    this.active.queryParamMap.subscribe(data=>{
-    this.serv.getAcessToken(data.get('code')).subscribe(data=>{
-    this.getUserData(data);
-    
-    },
-    err=>console.log(err)); 
-    
-    });
+      this.serv.getUserDetails().subscribe(data=>this.username=data["login"],err=>{throw err});
   }
 
-   getUserData(resp)
+logout()
 {
-this.serv.getUserDetails(resp.access_token).subscribe(data=>console.log(data));
-
+  this.serv.logout().subscribe(data=>this.router.navigate(['/login']),err=>{throw err});
 }
 
 }

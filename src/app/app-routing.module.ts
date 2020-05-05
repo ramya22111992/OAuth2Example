@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { GitAuthComponent } from './git-auth/git-auth.component';
 import { ExtUrlResolverService } from './ext-url-resolver.service';
+import { RedirectComponent } from './redirect/redirect.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
     resolve: {
         url: ExtUrlResolverService
     }
+},
+{
+  path:'redirect',
+  component:RedirectComponent
 }
 ];
 
