@@ -13,9 +13,10 @@ export class ErrorComponent implements OnInit {
   error:string;
 
   ngOnInit() {
-    this.ErrorServ.returnAsObservable().subscribe(data=>{
+    this.ErrorServ.returnAsObservable().subscribe(err=>{
       this.zone.run(()=>{
-        this.error=data; 
+        
+        this.error=err; 
       })
     
     });

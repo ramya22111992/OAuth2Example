@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
-import{HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
+import{HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { GitAuthComponent } from './git-auth/git-auth.component';
 import { RedirectComponent } from './redirect/redirect.component';
 import { ErrorComponent } from './error/error.component';
-import { GlobalErrorHandlerService } from './global-error-handler.service';
+import { ErrorHandlingInterceptorService } from './error-handling-interceptor.service';
+import { NoSuchComponent } from './no-such/no-such.component';
 
 @NgModule({
   declarations: [
@@ -18,16 +19,20 @@ import { GlobalErrorHandlerService } from './global-error-handler.service';
     LoginComponent,
     GitAuthComponent,
     RedirectComponent,
-    ErrorComponent
+    ErrorComponent,
+    NoSuchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,HttpClientModule,
     HttpClientXsrfModule
   ],
-  providers: [{
-provide:ErrorHandler,
-    useClass:GlobalErrorHandlerService
+  providers: [
+  {
+    provide:HTTP_INTERCEPTORS,
+    useClass:ErrorHandlingInterceptorService,
+    multi:true
+
   }
   ],
   bootstrap: [AppComponent]

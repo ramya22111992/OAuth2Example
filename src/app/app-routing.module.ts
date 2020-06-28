@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { GitAuthComponent } from './git-auth/git-auth.component';
 import { ExtUrlResolverService } from './ext-url-resolver.service';
 import { RedirectComponent } from './redirect/redirect.component';
+import { NoSuchComponent } from './no-such/no-such.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
 {
   path:'redirect',
   component:RedirectComponent
+},
+{
+  path:'**',
+  component:NoSuchComponent
 }
 ];
 
