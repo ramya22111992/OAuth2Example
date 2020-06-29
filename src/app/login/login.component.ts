@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private serv:OAuthService,private router:Router) { }
   ngOnInit() {
-    this.serv.GetAuthPage().subscribe(data=>this.AuthUrl=data["authUrl"],err=>{throw err});
+    this.serv.GetAuthPage().subscribe(data=>this.AuthUrl=data["authUrl"],err=>{console.log(err)});
 }
 
   login()

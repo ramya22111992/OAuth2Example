@@ -15,7 +15,7 @@ export class RedirectComponent implements OnInit {
   ngOnInit() {
 
     this.active.queryParamMap.pipe(concatMap(x=>this.serv.getAcessToken(x.get('code')) ))
-    .subscribe(data=>this.router.navigate(['/dashboard']),err=>{throw err}); 
+    .subscribe(data=>this.router.navigate(['/dashboard']),err=>{console.log(err)}); 
 
   }
 
